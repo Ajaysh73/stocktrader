@@ -2,13 +2,9 @@
   <div>
     <div class="container">
       <div class="py-5">
-        <app-header></app-header>
+        <app-header :funds="funds"></app-header>
       </div>
-      <div class="row">
-        <div class="col-xs-12">
-          <router-view></router-view>
-        </div>
-      </div>
+      <router-view></router-view>
     </div>
   </div>
 </template>
@@ -18,8 +14,13 @@ export default {
   components: {
     appHeader: Header
   },
-  created() {
-    this.$store.dispatch('initStocks');
+  created () {
+    this.$store.dispatch("initStocks");
+  },
+  computed: {
+    funds () {
+      return this.$store.getters.funds;
+    }
   }
 };
 </script>
